@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+	  <TargetFramework>net6.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Epias.Data\Epias.Data.csproj" />
+    <ProjectReference Include="..\Epias.Entities\Epias.Entities.csproj" />
+  </ItemGroup>
+
+</Project>

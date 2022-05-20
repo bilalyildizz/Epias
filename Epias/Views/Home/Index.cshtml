@@ -1,0 +1,34 @@
+﻿@model List<Epias.Entities.Concrete.TradeHistory>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Id</th>
+                <th scope="col">Conract</th>
+                <th scope="col">Price</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var tradeHistory in Model)
+            {
+                <tr>
+                    <th scope="row">1</th>
+                    <td>@tradeHistory.Id</td>
+                    <td>@tradeHistory.Conract</td>
+                    <td>@tradeHistory.Price</td>
+                    <td>@tradeHistory.Quantity</td>
+                    <td>@tradeHistory.Date.ToShortDateString()</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
