@@ -7,27 +7,27 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Epias.Data.Abstract;
-using Epias.Entities.Concrete;
-using Epias.Services.Abstract;
+using Epias.Services.Interfaces;
+
 
 namespace Epias.Controllers;
 
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
-    private readonly ITradeHistoryService _tradeHistoryService;
+    private readonly IIntraDayTradeHistoryService _tradeHistoryService;
 
-    public HomeController(ILogger<HomeController> logger, ITradeHistoryService tradeHistoryService)
+    public HomeController(ILogger<HomeController> logger, IIntraDayTradeHistoryService tradeHistoryService)
     {
         _logger = logger;
         _tradeHistoryService = tradeHistoryService;
     }
 
-    public IActionResult Index()
+    public async Task<IActionResult> Index()
     {
-        var result = _tradeHistoryService.GetAll();
+        var result = await _tradeHistoryService.GetAllByDateAsync();
 
-        return View(result);
+        return View(result.Data);
     }
 
     public IActionResult Privacy()

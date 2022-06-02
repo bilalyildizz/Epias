@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32210.238
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Epias", "Epias\Epias.csproj", "{3D0E8050-167A-41E6-855F-742E2C1A7A6D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Epias", "Epias\Epias.csproj", "{3D0E8050-167A-41E6-855F-742E2C1A7A6D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Epias.Data", "Epias.Data\Epias.Data.csproj", "{FA4E712A-49D6-4EC4-A029-FDD5154F7827}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Epias.Data", "Epias.Data\Epias.Data.csproj", "{FA4E712A-49D6-4EC4-A029-FDD5154F7827}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Epias.Services", "Epias.Services\Epias.Services.csproj", "{78F86ACA-C678-4677-BF6C-63BF95A7B872}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Epias.Services", "Epias.Services\Epias.Services.csproj", "{78F86ACA-C678-4677-BF6C-63BF95A7B872}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Epias.Entities", "Epias.Entities\Epias.Entities.csproj", "{AC44ACA1-CBFA-4641-9C23-703D71A18552}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Epias.Entities", "Epias.Entities\Epias.Entities.csproj", "{AC44ACA1-CBFA-4641-9C23-703D71A18552}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Epias.Api", "Epias.Api\Epias.Api.csproj", "{8BC173AB-3654-4DB0-AAD0-0639424F1DF9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Epias.Transparency.Api", "Epias.Api\Epias.Transparency.Api.csproj", "{8BC173AB-3654-4DB0-AAD0-0639424F1DF9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

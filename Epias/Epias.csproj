@@ -19,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Epias.Api\Epias.Api.csproj" />
+    <ProjectReference Include="..\Epias.Api\Epias.Transparency.Api.csproj" />
     <ProjectReference Include="..\Epias.Data\Epias.Data.csproj" />
     <ProjectReference Include="..\Epias.Services\Epias.Services.csproj" />
   </ItemGroup>
