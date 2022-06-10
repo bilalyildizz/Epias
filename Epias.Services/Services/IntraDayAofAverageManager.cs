@@ -26,8 +26,13 @@ public class IntraDayAofAverageManager : IIntraDayAofAverageService
     {
         foreach (var intraDayAofAverage in intraDayAofAverages)
         {
-            var result = await _intraDayAofAverageRepository.AnyAsync(t => t.Date == intraDayAofAverage.Date && t.Period == intraDayAofAverage.Period && t.Aof == intraDayAofAverage.Aof && t.PeriodType== intraDayAofAverage.PeriodType);
-            if (!result)
+            var result = await _intraDayAofAverageRepository.Get(t => t.Date == intraDayAofAverage.Date && t.Period == intraDayAofAverage.Period && t.PeriodType== intraDayAofAverage.PeriodType);
+            if (result!=null)
+            {
+                intraDayAofAverage.Id = result.Id;
+                await _intraDayAofAverageRepository.UpdateAsync(intraDayAofAverage);
+            }
+            else
             {
                 await _intraDayAofAverageRepository.AddAsync(intraDayAofAverage);
             }

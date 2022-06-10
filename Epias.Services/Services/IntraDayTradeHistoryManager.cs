@@ -27,8 +27,13 @@ public class IntraDayTradeHistoryManager : IIntraDayTradeHistoryService
     {
         foreach (var tradeHistory in tradeHistories)
         {
-            var result = await _tradeHistoryRepository.AnyAsync(t => t.IdApi == tradeHistory.IdApi);
-            if (!result)
+            var result = await _tradeHistoryRepository.Get(t => t.IdApi == tradeHistory.IdApi);
+            if (result!=null)
+            {
+                tradeHistory.Id = result.Id;
+                await _tradeHistoryRepository.UpdateAsync(tradeHistory);
+            }
+            else
             {
                 await _tradeHistoryRepository.AddAsync(tradeHistory);
             }

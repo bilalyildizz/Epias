@@ -24,4 +24,8 @@
     <ProjectReference Include="..\Epias.Services\Epias.Services.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Models\" />
+  </ItemGroup>
+
 </Project>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Epias.Entities.Models;
+using Epias.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
@@ -26,6 +27,7 @@ public partial class EpiasDbContext : DbContext
     public virtual DbSet<IntraDayTradeHistory> IntraDayTradeHistory { get; set; }
     public virtual DbSet<IntraDayVolume> IntraDayVolume { get; set; }
     public virtual DbSet<IntraDayVolumeSummary> IntraDayVolumeSummary { get; set; }
+    public virtual DbSet<McpSmp> McpSmp { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {

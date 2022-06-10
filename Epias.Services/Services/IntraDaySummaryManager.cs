@@ -24,8 +24,13 @@ namespace Epias.Services.Services
         {
             foreach (var intraDaySummary in intraDaySummaries)
             {
-                var result = await _intraDaySummaryRepository.AnyAsync(t=>t.IdApi==intraDaySummary.IdApi);
-                if (!result)
+                var result = await _intraDaySummaryRepository.Get(t=>t.IdApi==intraDaySummary.IdApi);
+                if (result!=null)
+                {
+                    intraDaySummary.Id = result.Id;
+                    await _intraDaySummaryRepository.UpdateAsync(intraDaySummary);
+                }
+                else
                 {
                     await _intraDaySummaryRepository.AddAsync(intraDaySummary);
                 }

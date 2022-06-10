@@ -25,8 +25,13 @@ public class IntraDayVolumeManager : IIntraDayVolumeService
     {
         foreach (var intraDayVolume in intraDayVolumes)
         {
-            var result = await _intraDayVolumeRepository.AnyAsync(t=>t.BlockMatchQuantity==intraDayVolume.BlockMatchQuantity&&t.Date==intraDayVolume.Date&&t.HourlyMatchQuantity==intraDayVolume.HourlyMatchQuantity);
-            if (!result)
+            var result = await _intraDayVolumeRepository.Get(t=>t.Date==intraDayVolume.Date);
+            if (result!=null)
+            {
+                intraDayVolume.Id = result.Id;
+                await _intraDayVolumeRepository.UpdateAsync(intraDayVolume);
+            }
+            else
             {
                 await _intraDayVolumeRepository.AddAsync(intraDayVolume);
             }

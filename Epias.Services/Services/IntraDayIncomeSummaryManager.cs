@@ -26,8 +26,13 @@ public class IntraDayIncomeSummaryManager : IIntraDayIncomeSummaryService
 
         foreach (var intraDayIncomeSummary in intraDayIncomeSummaries)
         {
-            var result = await _intraDayIncomeSummaryRepository.AnyAsync(t => t.Date == intraDayIncomeSummary.Date && t.Period == intraDayIncomeSummary.Period && t.Income == intraDayIncomeSummary.Income && t.PeriodType == intraDayIncomeSummary.PeriodType);
-            if (!result)
+            var result = await _intraDayIncomeSummaryRepository.Get(t => t.Date == intraDayIncomeSummary.Date && t.Period == intraDayIncomeSummary.Period  && t.PeriodType == intraDayIncomeSummary.PeriodType);
+            if (result!=null)
+            {
+                intraDayIncomeSummary.Id = result.Id;
+                await _intraDayIncomeSummaryRepository.UpdateAsync(intraDayIncomeSummary);
+            }
+            else
             {
                 await _intraDayIncomeSummaryRepository.AddAsync(intraDayIncomeSummary);
             }

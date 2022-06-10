@@ -24,8 +24,13 @@ public class IntraDayVolumeSummaryManager:IIntraDayVolumeSummaryService
     {
         foreach (var intraDAyVolumeSummary in intraDayVolumeSummaries)
         {
-            var result = await _intraDayVolumeSummaryRepository.AnyAsync(t => t.Date==intraDAyVolumeSummary.Date&& t.Period==intraDAyVolumeSummary.Period && t.PeriodType==intraDAyVolumeSummary.PeriodType&& t.Volume==intraDAyVolumeSummary.Volume);
-            if (!result)
+            var result = await _intraDayVolumeSummaryRepository.Get(t => t.Date==intraDAyVolumeSummary.Date&& t.Period==intraDAyVolumeSummary.Period && t.PeriodType==intraDAyVolumeSummary.PeriodType);
+            if (result!=null)
+            {
+                intraDAyVolumeSummary.Id = result.Id;
+                await _intraDayVolumeSummaryRepository.UpdateAsync(intraDAyVolumeSummary);
+            }
+            else
             {
                 await _intraDayVolumeSummaryRepository.AddAsync(intraDAyVolumeSummary);
             }

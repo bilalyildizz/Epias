@@ -26,8 +26,13 @@ public class IntraDayAofManager : IIntraDayAofService
 
         foreach (var intraDayAof in intraDayAofs)
         {
-            var result = await _intraDayAofRepository.AnyAsync(t => t.Date == intraDayAof.Date && t.Price==intraDayAof.Price);
-            if (!result)
+            var result = await _intraDayAofRepository.Get(t => t.Date == intraDayAof.Date);
+            if (result!=null)
+            {
+                intraDayAof.Id = result.Id;
+                await _intraDayAofRepository.UpdateAsync(intraDayAof);
+            }
+            else
             {
                 await _intraDayAofRepository.AddAsync(intraDayAof);
             }

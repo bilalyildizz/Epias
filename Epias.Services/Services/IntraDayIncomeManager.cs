@@ -25,8 +25,13 @@ public class IntraDayIncomeManager : IIntraDayIncomeService
     {
         foreach (var intraDayIncome in intraDayIncomes)
         {
-            var result = await _intraDayIncomeRepository.AnyAsync(t => t.Date == intraDayIncome.Date &&t.Income== intraDayIncome.Income);
-            if (!result)
+            var result = await _intraDayIncomeRepository.Get(t => t.Date == intraDayIncome.Date);
+            if (result!=null)
+            {
+                intraDayIncome.Id = result.Id;
+                await _intraDayIncomeRepository.UpdateAsync(intraDayIncome);
+            }
+            else
             {
                 await _intraDayIncomeRepository.AddAsync(intraDayIncome);
             }

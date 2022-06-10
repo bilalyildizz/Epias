@@ -52,6 +52,10 @@ builder.Services.AddTransient<IIntraDayVolumeSummaryRepository, EfIntraDayVolume
 builder.Services.AddTransient<IIntraDayVolumeSummaryService, IntraDayVolumeSummaryManager>();
 builder.Services.AddTransient<IIntraDayVolumeSummaryApi, IntraDayVolumeSummaryApi>();
 
+builder.Services.AddTransient<IMcpSmpRepository, EfMcpSmpRepository>();
+builder.Services.AddTransient<IMcpSmpService, McpSmpManager>();
+builder.Services.AddTransient<IMcpSmpApi, McpSmpApi>();
+
 builder.Services.AddSingleton<IHttpClientManager, HttpClientManager>();
 
 builder.Services.AddControllersWithViews();
@@ -73,6 +77,7 @@ builder.Services.AddHostedService<IntraDayIncomeSummaryBackgroundService>();
 builder.Services.AddHostedService<IntraDaySummaryBackgroundService>();
 builder.Services.AddHostedService<IntraDayVolumeBackgroundService>();
 builder.Services.AddHostedService<IntraDayVolumeSummaryBackgroundService>();
+builder.Services.AddHostedService<McpSmpBackgroundService>();
 
 var app = builder.Build();
 
@@ -84,6 +89,12 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
+app.UseCors(x => x
+    .AllowAnyMethod()
+    .AllowAnyHeader()
+    .SetIsOriginAllowed(origin => true) 
+    .AllowCredentials()); 
+
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();

@@ -26,8 +26,13 @@ public class IntraDayQuantityManager : IIntraDayQuantityService
     {
         foreach (var intraDayQuantity in intraDayQuantities)
         {
-            var result = await _intraDayQuantityRepository.AnyAsync(t => t.HourlyPurchaseQuantity == intraDayQuantity.HourlyPurchaseQuantity && t.EffectiveDate ==intraDayQuantity.EffectiveDate && t.HourlySaleQuantity==intraDayQuantity.HourlySaleQuantity);
-            if (!result)
+            var result = await _intraDayQuantityRepository.Get(t => t.EffectiveDate==intraDayQuantity.EffectiveDate);
+            if (result!=null)
+            {
+                intraDayQuantity.Id = result.Id;
+                await _intraDayQuantityRepository.UpdateAsync(intraDayQuantity);
+            }
+            else
             {
                 await _intraDayQuantityRepository.AddAsync(intraDayQuantity);
             }

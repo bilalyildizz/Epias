@@ -55,7 +55,7 @@ public class EfRepositoryBase<TEntity> : IRepository<TEntity>
 
     public async Task<TEntity> Get(Expression<Func<TEntity, bool>> predicate = null)
     {
-        return await _context.Set<TEntity>().SingleOrDefaultAsync(predicate);
+        return await _context.Set<TEntity>().AsNoTracking().SingleOrDefaultAsync(predicate);
     }
 }
 
