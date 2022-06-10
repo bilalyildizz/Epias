@@ -56,6 +56,10 @@ builder.Services.AddTransient<IMcpSmpRepository, EfMcpSmpRepository>();
 builder.Services.AddTransient<IMcpSmpService, McpSmpManager>();
 builder.Services.AddTransient<IMcpSmpApi, McpSmpApi>();
 
+builder.Services.AddTransient<IBulletinWeeklyRepository, EfBulletinsWeeklyRepository>();
+builder.Services.AddTransient<IBulletinsWeeklyService, BulletinsWeeklyManager>();
+builder.Services.AddTransient<IBulletinsWeeklyApi, BulletinsWeeklyApi>();
+
 builder.Services.AddSingleton<IHttpClientManager, HttpClientManager>();
 
 builder.Services.AddControllersWithViews();
@@ -78,6 +82,7 @@ builder.Services.AddHostedService<IntraDaySummaryBackgroundService>();
 builder.Services.AddHostedService<IntraDayVolumeBackgroundService>();
 builder.Services.AddHostedService<IntraDayVolumeSummaryBackgroundService>();
 builder.Services.AddHostedService<McpSmpBackgroundService>();
+builder.Services.AddHostedService<BulletinsWeeklyBackgroundService>();
 
 var app = builder.Build();
 
