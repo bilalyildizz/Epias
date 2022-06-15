@@ -60,6 +60,10 @@ builder.Services.AddTransient<IBulletinWeeklyRepository, EfBulletinsWeeklyReposi
 builder.Services.AddTransient<IBulletinsWeeklyService, BulletinsWeeklyManager>();
 builder.Services.AddTransient<IBulletinsWeeklyApi, BulletinsWeeklyApi>();
 
+builder.Services.AddTransient<IBulletinsMonthlyRepository, EfBulletinsMonthlyRepository>();
+builder.Services.AddTransient<IBulletinsMonthlyService, BulletinsMonthlyManager>();
+builder.Services.AddTransient<IBulletinsMonthlyApi, BulletinsMonthlyApi>();
+
 builder.Services.AddSingleton<IHttpClientManager, HttpClientManager>();
 
 builder.Services.AddControllersWithViews();
@@ -83,6 +87,7 @@ builder.Services.AddHostedService<IntraDayVolumeBackgroundService>();
 builder.Services.AddHostedService<IntraDayVolumeSummaryBackgroundService>();
 builder.Services.AddHostedService<McpSmpBackgroundService>();
 builder.Services.AddHostedService<BulletinsWeeklyBackgroundService>();
+builder.Services.AddHostedService<BulletinsMonthlyBackgroundService>();
 
 var app = builder.Build();
 
