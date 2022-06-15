@@ -29,6 +29,8 @@ public partial class EpiasDbContext : DbContext
     public virtual DbSet<IntraDayVolumeSummary> IntraDayVolumeSummary { get; set; }
     public virtual DbSet<McpSmp> McpSmp { get; set; }
     public virtual DbSet<BulletinsWeekly> BulletinsWeekly { get; set; }
+    public virtual DbSet<BulletinDaily> BulletinDaily { get; set; }
+    public virtual DbSet<BulletinYear> BulletinYear { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
